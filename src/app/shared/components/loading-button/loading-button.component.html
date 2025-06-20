@@ -1,0 +1,49 @@
+<button
+  [type]="type"
+  [disabled]="isDisabled"
+  [class]="buttonClass"
+  [attr.aria-label]="ariaLabel || loadingText"
+  [attr.aria-busy]="loading"
+  (click)="onClick()"
+  [ngSwitch]="variant">
+
+  <button *ngSwitchCase="'raised'" mat-raised-button [color]="color" [disabled]="isDisabled">
+    <div class="button-content">
+      <mat-spinner *ngIf="loading" diameter="20" class="button-spinner"></mat-spinner>
+      <mat-icon *ngIf="!loading && icon" class="button-icon">{{ icon }}</mat-icon>
+      <span class="button-text">
+        <ng-content></ng-content>
+      </span>
+    </div>
+  </button>
+
+  <button *ngSwitchCase="'stroked'" mat-stroked-button [color]="color" [disabled]="isDisabled">
+    <div class="button-content">
+      <mat-spinner *ngIf="loading" diameter="20" class="button-spinner"></mat-spinner>
+      <mat-icon *ngIf="!loading && icon" class="button-icon">{{ icon }}</mat-icon>
+      <span class="button-text">
+        <ng-content></ng-content>
+      </span>
+    </div>
+  </button>
+
+  <button *ngSwitchCase="'flat'" mat-flat-button [color]="color" [disabled]="isDisabled">
+    <div class="button-content">
+      <mat-spinner *ngIf="loading" diameter="20" class="button-spinner"></mat-spinner>
+      <mat-icon *ngIf="!loading && icon" class="button-icon">{{ icon }}</mat-icon>
+      <span class="button-text">
+        <ng-content></ng-content>
+      </span>
+    </div>
+  </button>
+
+  <button *ngSwitchDefault mat-button [color]="color" [disabled]="isDisabled">
+    <div class="button-content">
+      <mat-spinner *ngIf="loading" diameter="20" class="button-spinner"></mat-spinner>
+      <mat-icon *ngIf="!loading && icon" class="button-icon">{{ icon }}</mat-icon>
+      <span class="button-text">
+        <ng-content></ng-content>
+      </span>
+    </div>
+  </button>
+</button>

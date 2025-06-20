@@ -1,0 +1,26 @@
+<mat-form-field [appearance]="appearance" class="full-width form-field">
+  <mat-label>{{ label }}</mat-label>
+
+  <mat-icon matPrefix *ngIf="icon" class="field-icon">{{ icon }}</mat-icon>
+
+  <input
+    matInput
+    [type]="type"
+    [placeholder]="placeholder"
+    [value]="value"
+    [disabled]="disabled"
+    [required]="required"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+    [attr.aria-label]="label"
+    [attr.aria-required]="required"
+    [attr.aria-invalid]="hasError()"
+    [attr.aria-describedby]="hasError() ? 'error-' + label : hint ? 'hint-' + label : null">
+
+  <mat-hint *ngIf="hint && !hasError()" [id]="'hint-' + label">{{ hint }}</mat-hint>
+
+  <mat-error *ngIf="hasError()" [id]="'error-' + label" role="alert">
+    <mat-icon class="error-icon">error</mat-icon>
+    {{ getErrorMessage() }}
+  </mat-error>
+</mat-form-field>

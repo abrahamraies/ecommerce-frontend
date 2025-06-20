@@ -1,0 +1,104 @@
+/* Success Snackbar */
+.success-snackbar {
+  --mdc-snackbar-container-color: #4caf50;
+  --mdc-snackbar-supporting-text-color: white;
+  --mat-snack-bar-button-color: white;
+}
+
+.success-snackbar .mat-mdc-snack-bar-container {
+  background-color: #4caf50;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.success-snackbar .mat-mdc-button {
+  color: white;
+  font-weight: 500;
+}
+
+/* Error Snackbar */
+.error-snackbar {
+  --mdc-snackbar-container-color: #f44336;
+  --mdc-snackbar-supporting-text-color: white;
+  --mat-snack-bar-button-color: white;
+}
+
+.error-snackbar .mat-mdc-snack-bar-container {
+  background-color: #f44336;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+}
+
+.error-snackbar .mat-mdc-button {
+  color: white;
+  font-weight: 500;
+}
+
+/* Warning Snackbar */
+.warning-snackbar {
+  --mdc-snackbar-container-color: #ff9800;
+  --mdc-snackbar-supporting-text-color: white;
+  --mat-snack-bar-button-color: white;
+}
+
+.warning-snackbar .mat-mdc-snack-bar-container {
+  background-color: #ff9800;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+}
+
+.warning-snackbar .mat-mdc-button {
+  color: white;
+  font-weight: 500;
+}
+
+/* Info Snackbar */
+.info-snackbar {
+  --mdc-snackbar-container-color: #2196f3;
+  --mdc-snackbar-supporting-text-color: white;
+  --mat-snack-bar-button-color: white;
+}
+
+.info-snackbar .mat-mdc-snack-bar-container {
+  background-color: #2196f3;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+.info-snackbar .mat-mdc-button {
+  color: white;
+  font-weight: 500;
+}
+
+/* General snackbar improvements */
+.mat-mdc-snack-bar-container {
+  font-family: "Inter", "Roboto", sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: 400px;
+  min-width: 300px;
+}
+
+.mat-mdc-snack-bar-action {
+  margin-left: 16px;
+}
+
+/* Animation improvements */
+.mat-mdc-snack-bar-container {
+  animation: slideInUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

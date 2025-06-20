@@ -1,0 +1,92 @@
+<div class="product-list-container">
+  <div class="header-section">
+    <div class="title-section">
+      <h1>Digital Products</h1>
+      <p class="subtitle">Discover amazing digital products and tools</p>
+    </div>
+
+    <div class="filters-section">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Search products</mat-label>
+        <input matInput [(ngModel)]="searchTerm" (input)="onSearchChange()"
+               placeholder="Search by title or description">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="sort-field">
+        <mat-label>Sort by</mat-label>
+        <mat-select [(value)]="sortBy" (selectionChange)="onSortChange()">
+          <mat-option value="title">Title</mat-option>
+          <mat-option value="price">Price</mat-option>
+          <mat-option value="createdAt">Date Added</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="order-field">
+        <mat-label>Order</mat-label>
+        <mat-select [(value)]="sortOrder" (selectionChange)="onSortChange()">
+          <mat-option value="asc">Ascending</mat-option>
+          <mat-option value="desc">Descending</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Loading amazing products...</p>
+  </div>
+
+  <div *ngIf="!loading && filteredProducts.length === 0" class="no-products">
+    <mat-icon class="no-products-icon">inventory_2</mat-icon>
+    <h2>No products found</h2>
+    <p *ngIf="searchTerm">Try adjusting your search terms</p>
+    <p *ngIf="!searchTerm">Check back soon for new products!</p>
+  </div>
+
+  <div *ngIf="!loading && filteredProducts.length > 0" class="products-grid">
+    <mat-card *ngFor="let product of filteredProducts"
+              class="product-card"
+              (click)="viewProduct(product)">
+
+      <div class="card-image-container">
+        <img mat-card-image [src]="product.imageUrl || '/assets/placeholder.jpg'"
+             [alt]="product.title" class="product-image">
+        <div class="image-overlay">
+          <button mat-fab color="primary" class="quick-add-btn"
+                  (click)="addToCart(product, $event)"
+                  matTooltip="Add to cart">
+            <mat-icon>add_shopping_cart</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <mat-card-content class="card-content">
+        <div class="product-info">
+          <h3 class="product-title">{{ product.title }}</h3>
+          <p class="product-description">{{ product.description }}</p>
+        </div>
+
+        <div class="product-footer">
+          <div class="price-section">
+            <span class="price">${{ product.price.toFixed(2) }}</span>
+            <span class="price-label">Digital Download</span>
+          </div>
+
+          <div class="card-actions">
+            <button mat-icon-button color="primary"
+                    (click)="addToCart(product, $event)"
+                    matTooltip="Add to cart">
+              <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+            <button mat-icon-button
+                    (click)="viewProduct(product); $event.stopPropagation()"
+                    matTooltip="View details">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,136 @@
+.theme-toggle-btn {
+  position: relative;
+  overflow: hidden;
+  border-radius: 50% !important;
+  width: 44px !important;
+  height: 44px !important;
+  transition: all var(--transition-normal);
+  background: var(--background-glass) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-glass) !important;
+  color: var(--text-primary) !important;
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.1) rotate(15deg);
+  background: var(--background-overlay) !important;
+  box-shadow: var(--shadow-2);
+}
+
+.theme-toggle-btn.dark-active {
+  background: rgba(255, 215, 0, 0.1) !important;
+  border-color: rgba(255, 215, 0, 0.3) !important;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.theme-toggle-btn.dark-active:hover {
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+}
+
+.theme-icon {
+  transition: all var(--transition-slow);
+  font-size: 22px !important;
+  width: 22px !important;
+  height: 22px !important;
+  color: var(--text-primary);
+}
+
+.dark-active .theme-icon {
+  color: #ffd700 !important;
+}
+
+.theme-toggle-btn:hover .theme-icon {
+  transform: rotate(180deg) scale(1.1);
+}
+
+/* Enhanced animation for theme change */
+.theme-toggle-btn.changing {
+  animation: buttonPulse 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle-btn.changing .theme-icon {
+  animation: iconSpin 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes buttonPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes iconSpin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/* Ripple effect */
+.theme-toggle-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: var(--primary-color);
+  opacity: 0.3;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+  pointer-events: none;
+}
+
+.theme-toggle-btn:active::before {
+  width: 60px;
+  height: 60px;
+}
+
+/* Focus state for accessibility */
+.theme-toggle-btn:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle-btn,
+  .theme-icon,
+  .theme-toggle-btn::before,
+  .theme-toggle-btn.changing,
+  .theme-toggle-btn.changing .theme-icon {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .theme-toggle-btn {
+    border: 2px solid var(--text-primary) !important;
+  }
+}
+
+/* Fallback for browsers that don't support CSS custom properties */
+@supports not (color: var(--primary-color)) {
+  .theme-toggle-btn {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
+
+  .dark-active {
+    background: rgba(255, 215, 0, 0.1) !important;
+    border-color: rgba(255, 215, 0, 0.3) !important;
+  }
+}

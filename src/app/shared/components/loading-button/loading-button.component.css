@@ -1,0 +1,170 @@
+.loading-button {
+  position: relative;
+  transition: all var(--transition-normal);
+  overflow: hidden;
+  border-radius: var(--border-radius-lg) !important;
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.button-spinner {
+  color: inherit;
+}
+
+.button-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  transition: transform var(--transition-fast);
+}
+
+.button-text {
+  font-weight: 500;
+  letter-spacing: 0.25px;
+}
+
+/* Shimmer effect for loading state */
+.loading-button.loading::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 1.5s infinite;
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Size variants */
+.size-small {
+  .button-content {
+    padding: 6px 16px;
+    font-size: 12px;
+  }
+
+  .button-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.size-medium {
+  .button-content {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+.size-large {
+  .button-content {
+    padding: 14px 28px;
+    font-size: 16px;
+  }
+
+  .button-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* Loading state */
+.loading-button[disabled] {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.loading-button:not([disabled]):hover {
+  transform: translateY(-2px);
+}
+
+.loading-button:not([disabled]):hover .button-icon {
+  transform: scale(1.1);
+}
+
+.loading-button:not([disabled]):active {
+  transform: translateY(0);
+}
+
+/* Enhanced focus state for accessibility */
+.loading-button:focus-visible {
+  outline: 2px solid var(--primary-500);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(63, 166, 238, 0.2);
+}
+
+/* Variant-specific styles */
+.variant-raised {
+  box-shadow: var(--shadow-2);
+}
+
+.variant-raised:hover:not([disabled]) {
+  box-shadow: var(--shadow-3);
+}
+
+.variant-stroked {
+  border: 2px solid currentColor;
+  background: transparent;
+}
+
+.variant-flat {
+  box-shadow: none;
+}
+
+/* Color-specific enhancements */
+.color-primary {
+  background: var(--gradient-primary);
+}
+
+.color-accent {
+  background: var(--gradient-secondary);
+}
+
+.color-warn {
+  background: linear-gradient(135deg, var(--warn-500), var(--warn-600));
+}
+
+/* Dark theme adjustments */
+.dark-theme .loading-button.loading::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .loading-button,
+  .button-icon,
+  .loading-button::before {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .loading-button {
+    border: 2px solid currentColor !important;
+  }
+}
