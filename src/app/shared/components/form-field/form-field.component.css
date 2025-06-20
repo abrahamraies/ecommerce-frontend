@@ -1,42 +1,51 @@
-.form-field {
-  margin-bottom: 16px;
-  transition: var(--transition);
+:host {
+  display: block;
 }
 
-.field-icon {
+/* Estilos específicos para el componente */
+.full-width-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.inline-form-field {
+  display: inline-block;
+  margin-right: 16px;
+  vertical-align: top;
+}
+
+/* Asegurar que los estilos solo apliquen dentro del componente */
+:host .field-icon {
   color: var(--text-secondary);
   margin-right: 8px;
 }
 
-.error-icon {
+:host .error-icon {
   font-size: 16px;
   width: 16px;
   height: 16px;
   margin-right: 4px;
 }
 
-.mat-mdc-form-field-error {
+/* Especificar correctamente los selectores de Angular Material */
+:host .mat-mdc-form-field-error {
   display: flex;
   align-items: center;
   font-size: 12px;
   line-height: 1.4;
 }
 
-.mat-mdc-form-field-hint {
+:host .mat-mdc-form-field-hint {
   font-size: 12px;
   color: var(--text-secondary);
 }
 
-/* Focus states for accessibility */
-.mat-mdc-form-field.mat-focused {
-  .field-icon {
-    color: var(--primary-color);
-  }
+/* Estados de enfoque - solo dentro del componente */
+:host .mat-mdc-form-field.mat-focused .field-icon {
+  color: var(--primary-color);
 }
 
-/* Error states */
-.mat-mdc-form-field.mat-form-field-invalid {
-  .field-icon {
-    color: var(--warn-color);
-  }
+/* Estados de error - solo dentro del componente */
+:host .mat-mdc-form-field.mat-form-field-invalid .field-icon {
+  color: var(--warn-color);
 }

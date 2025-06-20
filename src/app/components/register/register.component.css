@@ -7,7 +7,7 @@
   padding: 20px;
   position: relative;
   overflow-y: auto;
-  transition: background 0.3s ease;
+  transition: background var(--transition-normal);
 }
 
 .register-container::before {
@@ -90,18 +90,18 @@
 }
 
 .register-card {
-  background: var(--background-card);
+  background: var(--background-card) !important;
   backdrop-filter: blur(20px);
-  border-radius: 20px;
-  box-shadow: var(--shadow-4);
+  border-radius: 20px !important;
+  box-shadow: var(--shadow-4) !important;
   margin-bottom: 24px;
-  border: var(--border-glass);
-  transition: all 0.3s ease;
+  border: var(--border-glass) !important;
+  transition: all var(--transition-normal);
 }
 
 .register-card:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-5);
+  box-shadow: var(--shadow-5) !important;
 }
 
 .register-card mat-card-content {
@@ -126,52 +126,128 @@
 
 /* Enhanced form field styling for register */
 .register-card .mat-mdc-form-field {
-  transition: all 0.3s ease;
   width: 100%;
+  transition: all var(--transition-normal);
 }
 
-.register-card .mat-mdc-form-field .mat-mdc-form-field-flex {
-  background-color: var(--surface-secondary);
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  border: 1px solid var(--border-secondary);
+/* Outline appearance styling */
+.register-card .mat-mdc-form-field-outline {
+  color: var(--border-primary) !important;
+  border-radius: 12px !important;
 }
 
-.register-card .mat-mdc-form-field:hover .mat-mdc-form-field-flex {
-  background-color: var(--surface-tertiary);
-  border-color: var(--border-primary);
-  transform: translateY(-1px);
+.register-card .mat-mdc-form-field-outline-start,
+.register-card .mat-mdc-form-field-outline-end,
+.register-card .mat-mdc-form-field-outline-gap {
+  border-color: var(--text-secondary) !important;
+  border-width: 1px !important;
+  transition: border-color var(--transition-fast);
 }
 
-.register-card .mat-mdc-form-field.mat-focused .mat-mdc-form-field-flex {
-  background-color: var(--background-primary);
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(63, 166, 238, 0.1);
+/* Focused state */
+.register-card .mat-mdc-form-field.mat-focused .mat-mdc-form-field-outline-thick {
+  border-color: var(--primary-color) !important;
+  border-width: 2px !important;
 }
 
-.register-card .mat-mdc-form-field .mat-mdc-form-field-outline {
-  display: none;
+/* Error state */
+.register-card .mat-mdc-form-field.mat-form-field-invalid .mat-mdc-form-field-outline-thick {
+  border-color: var(--warn-500) !important;
+  border-width: 2px !important;
 }
 
+/* FIXED: Label styling with proper floating behavior */
+.register-card .mat-mdc-form-field .mat-mdc-floating-label {
+  color: var(--text-secondary) !important;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  pointer-events: none;
+  z-index: 2;
+  background: var(--background-card);
+  padding: 0 4px;
+  margin: 0 -4px;
+}
+
+/* FIXED: Floating state - when field has value or is focused */
+.register-card .mat-mdc-form-field.mat-focused .mat-mdc-floating-label,
+.register-card .mat-mdc-form-field.mat-form-field-should-float .mat-mdc-floating-label {
+  color: var(--primary-color) !important;
+  top: 0 !important;
+  transform: translateY(-50%) scale(0.75) !important;
+}
+
+/* FIXED: Error state label */
+.register-card .mat-mdc-form-field.mat-form-field-invalid .mat-mdc-floating-label {
+  color: var(--warn-500) !important;
+}
+
+/* FIXED: Input styling to trigger should-float */
 .register-card .mat-mdc-input-element {
   color: var(--text-primary) !important;
+  font-weight: 400;
+  background: transparent !important;
+  padding: 16px 12px !important;
 }
 
-.register-card .mat-mdc-form-field-label {
+.register-card .mat-mdc-input-element::placeholder {
+  color: transparent !important;
+  opacity: 0 !important;
+}
+
+/* FIXED: Icon styling - proper alignment */
+.register-card .mat-mdc-form-field-icon-prefix {
   color: var(--text-secondary) !important;
+  transition: color var(--transition-fast);
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-right: 12px !important;
+  margin-left: 12px !important;
+  height: 24px !important;
+  width: 24px !important;
 }
 
-.register-card .mat-mdc-form-field-icon-prefix,
 .register-card .mat-mdc-form-field-icon-suffix {
   color: var(--text-secondary) !important;
+  transition: color var(--transition-fast);
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-left: 12px !important;
+  margin-right: 12px !important;
 }
 
-/* Enhanced focus states */
-.register-card .mat-mdc-form-field.mat-focused {
-  .mat-mdc-form-field-flex {
-    background-color: var(--background-primary);
-    box-shadow: 0 0 0 2px rgba(63, 166, 238, 0.2);
-  }
+/* FIXED: Icon focus states */
+.register-card .mat-mdc-form-field.mat-focused .mat-mdc-form-field-icon-prefix,
+.register-card .mat-mdc-form-field.mat-focused .mat-mdc-form-field-icon-suffix {
+  color: var(--primary-color) !important;
+}
+
+.register-card .mat-mdc-form-field.mat-form-field-invalid .mat-mdc-form-field-icon-prefix,
+.register-card .mat-mdc-form-field.mat-form-field-invalid .mat-mdc-form-field-icon-suffix {
+  color: var(--warn-500) !important;
+}
+
+/* FIXED: Form field container alignment */
+.register-card .mat-mdc-form-field .mat-mdc-form-field-flex {
+  align-items: center !important;
+  padding: 0 !important;
+}
+
+.register-card .mat-mdc-form-field .mat-mdc-form-field-infix {
+  padding: 16px 0 !important;
+  border-top: none !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* FIXED: Ensure label floats when input has value */
+.register-card .mat-mdc-form-field .mat-mdc-input-element:not(:placeholder-shown) ~ .mat-mdc-floating-label,
+.register-card .mat-mdc-form-field .mat-mdc-input-element:focus ~ .mat-mdc-floating-label {
+  top: 0 !important;
+  transform: translateY(-50%) scale(0.75) !important;
+  color: var(--primary-color) !important;
 }
 
 /* Password strength indicator */
@@ -181,7 +257,7 @@
   background: var(--surface-secondary);
   border-radius: 8px;
   border: 1px solid var(--border-secondary);
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
 }
 
 .strength-label {
@@ -225,7 +301,7 @@
   background: var(--surface-secondary);
   border-radius: 12px;
   border: 1px solid var(--border-secondary);
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
 }
 
 .terms-section mat-checkbox {
@@ -237,11 +313,20 @@
   color: var(--text-primary) !important;
 }
 
+.terms-section .mdc-checkbox__background {
+  border-color: var(--text-secondary) !important;
+}
+
+.terms-section .mat-mdc-checkbox-checked .mdc-checkbox__background {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
 .terms-link {
   color: var(--primary-color);
   text-decoration: none;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: all var(--transition-fast);
   border-radius: 4px;
   padding: 2px 4px;
 }
@@ -270,6 +355,7 @@
   height: 16px;
 }
 
+/* Login link section */
 .login-link-section {
   text-align: center;
   margin-bottom: 32px;
@@ -289,17 +375,18 @@
   padding: 4px 8px;
   min-width: auto;
   border-radius: 8px;
-  transition: all 0.3s ease;
+  transition: all var(--transition-fast);
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   margin-left: 4px;
 }
 
 .login-link-button:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.2) !important;
   transform: translateY(-1px);
 }
 
+/* Features section */
 .features-section {
   display: flex;
   justify-content: center;
@@ -316,7 +403,7 @@
   font-size: 12px;
   text-align: center;
   opacity: 0.9;
-  transition: all 0.3s ease;
+  transition: all var(--transition-fast);
 }
 
 .feature-item:hover {
@@ -332,12 +419,64 @@
   background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
+  transition: all var(--transition-fast);
 }
 
 .feature-item:hover mat-icon {
   background: rgba(255, 255, 255, 0.2);
   transform: scale(1.1);
+}
+
+/* Dark theme specific adjustments */
+.dark-theme .register-card {
+  background: var(--background-card) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-theme .register-card .mat-mdc-form-field-outline-start,
+.dark-theme .register-card .mat-mdc-form-field-outline-end,
+.dark-theme .register-card .mat-mdc-form-field-outline-gap {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.dark-theme .register-card .mat-mdc-form-field.mat-focused .mat-mdc-form-field-outline-thick {
+  border-color: var(--primary-400) !important;
+}
+
+.dark-theme .register-card .mat-mdc-form-field.mat-focused .mat-mdc-form-field-label {
+  color: var(--primary-400) !important;
+}
+
+.dark-theme .register-card .mat-mdc-form-field.mat-focused .mat-mdc-form-field-icon-prefix,
+.dark-theme .register-card .mat-mdc-form-field.mat-focused .mat-mdc-form-field-icon-suffix {
+  color: var(--primary-400) !important;
+}
+
+.dark-theme .password-strength {
+  background: var(--surface-secondary);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .terms-section {
+  background: var(--surface-secondary);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .terms-section .mdc-checkbox__background {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.dark-theme .terms-section .mat-mdc-checkbox-checked .mdc-checkbox__background {
+  background-color: var(--primary-400) !important;
+  border-color: var(--primary-400) !important;
+}
+
+.dark-theme .terms-link {
+  color: var(--primary-400);
+}
+
+.dark-theme .terms-link:hover {
+  background: rgba(63, 166, 238, 0.2);
 }
 
 /* Responsive design */
@@ -413,21 +552,23 @@
 
 /* Accessibility improvements */
 .register-card .mat-mdc-form-field:focus-within {
-  .mat-mdc-form-field-outline-thick {
-    border-width: 3px;
-  }
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: 12px;
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .register-card {
-    background: var(--background-primary);
-    border: 2px solid var(--text-primary);
+    background: var(--background-primary) !important;
+    border: 2px solid var(--text-primary) !important;
   }
 
-  .register-card .mat-mdc-form-field-flex {
-    background-color: var(--background-primary) !important;
-    border: 1px solid var(--text-primary);
+  .register-card .mat-mdc-form-field-outline-start,
+  .register-card .mat-mdc-form-field-outline-end,
+  .register-card .mat-mdc-form-field-outline-gap {
+    border-color: var(--text-primary) !important;
+    border-width: 2px !important;
   }
 
   .password-strength,

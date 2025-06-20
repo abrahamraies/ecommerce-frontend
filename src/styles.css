@@ -322,6 +322,115 @@ body {
   color: var(--primary-color) !important;
 }
 
+/* ===== ENHANCED FORM FIELD LABEL BEHAVIOR FIXES ===== */
+
+/* Global fix for Angular Material form fields */
+.mat-mdc-form-field .mat-mdc-floating-label {
+  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1), color 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  pointer-events: none !important;
+}
+
+/* CRITICAL FIX: Force label to float when input has value */
+.mat-mdc-form-field .mat-mdc-input-element:not(:placeholder-shown) {
+  /* This triggers the should-float class */
+}
+
+.mat-mdc-form-field .mat-mdc-input-element:not(:placeholder-shown) + .mat-mdc-floating-label,
+.mat-mdc-form-field .mat-mdc-input-element:focus + .mat-mdc-floating-label {
+  transform: translateY(-50%) scale(0.75) !important;
+  color: var(--primary-color) !important;
+}
+
+/* Label should float when field has value or is focused */
+.mat-mdc-form-field.mat-form-field-should-float .mat-mdc-floating-label,
+.mat-mdc-form-field.mat-focused .mat-mdc-floating-label {
+  transform: translateY(-50%) scale(0.75) !important;
+  color: var(--primary-color) !important;
+}
+
+/* Label should be in normal position when field is empty and not focused */
+.mat-mdc-form-field:not(.mat-form-field-should-float):not(.mat-focused) .mat-mdc-floating-label {
+  transform: translateY(0) scale(1) !important;
+  color: var(--text-secondary) !important;
+}
+
+/* Error state label */
+.mat-mdc-form-field.mat-form-field-invalid .mat-mdc-floating-label {
+  color: var(--warn-500) !important;
+}
+
+/* CRITICAL FIX: Remove placeholder text to avoid conflicts */
+.mat-mdc-form-field .mat-mdc-input-element::placeholder {
+  color: transparent !important;
+  opacity: 0 !important;
+}
+
+/* Fix for outline appearance specifically */
+.mat-mdc-form-field.mat-mdc-form-field-outline .mat-mdc-floating-label {
+  top: 50% !important;
+  pointer-events: none;
+  z-index: 2;
+  background: var(--background-card);
+  padding: 0 4px;
+  margin: 0 -4px;
+}
+
+.mat-mdc-form-field.mat-mdc-form-field-outline.mat-form-field-should-float .mat-mdc-floating-label,
+.mat-mdc-form-field.mat-mdc-form-field-outline.mat-focused .mat-mdc-floating-label {
+  top: 0 !important;
+  transform: translateY(-50%) scale(0.75) !important;
+}
+
+/* CRITICAL FIX: Icon alignment */
+.mat-mdc-form-field-icon-prefix,
+.mat-mdc-form-field-icon-suffix {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 24px !important;
+  width: 24px !important;
+}
+
+.mat-mdc-form-field-icon-prefix {
+  margin-right: 12px !important;
+  margin-left: 12px !important;
+}
+
+.mat-mdc-form-field-icon-suffix {
+  margin-left: 12px !important;
+  margin-right: 12px !important;
+}
+
+/* CRITICAL FIX: Form field container alignment */
+.mat-mdc-form-field .mat-mdc-form-field-flex {
+  align-items: center !important;
+  padding: 0 !important;
+}
+
+.mat-mdc-form-field .mat-mdc-form-field-infix {
+  padding: 16px 0 !important;
+  border-top: none !important;
+  display: flex !important;
+  align-items: center !important;
+  min-height: 56px !important;
+}
+
+/* Dark theme label background fix */
+.dark-theme .mat-mdc-form-field .mat-mdc-floating-label {
+  background: var(--background-card);
+}
+
+/* Enhanced focus and hover states */
+.mat-mdc-form-field:hover:not(.mat-focused):not(.mat-form-field-invalid) .mat-mdc-form-field-outline-start,
+.mat-mdc-form-field:hover:not(.mat-focused):not(.mat-form-field-invalid) .mat-mdc-form-field-outline-end,
+.mat-mdc-form-field:hover:not(.mat-focused):not(.mat-form-field-invalid) .mat-mdc-form-field-outline-gap {
+  border-color: var(--text-primary) !important;
+}
+
+.mat-mdc-form-field:hover:not(.mat-focused):not(.mat-form-field-invalid) .mat-mdc-floating-label {
+  color: var(--text-primary) !important;
+}
+
 /* Buttons - Enhanced contrast for dark theme */
 .mat-mdc-button,
 .mat-mdc-unelevated-button,

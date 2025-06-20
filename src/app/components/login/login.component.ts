@@ -1,9 +1,9 @@
 import { Component, type OnInit, type OnDestroy } from "@angular/core"
-import {  FormBuilder, type FormGroup, Validators } from "@angular/forms"
-import  { Router, ActivatedRoute } from "@angular/router"
+import { FormBuilder, type FormGroup, Validators } from "@angular/forms"
+import { Router, ActivatedRoute } from "@angular/router"
 import { Subject, takeUntil } from "rxjs"
-import  { AuthService } from "../../services/auth.service"
-import  { MatSnackBar } from "@angular/material/snack-bar"
+import { AuthService } from "../../services/auth.service"
+import { MatSnackBar } from "@angular/material/snack-bar"
 
 @Component({
   selector: "app-login",
@@ -140,5 +140,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.snackBar.open("Forgot password feature coming soon!", "Close", {
       duration: 3000,
     })
+  }
+
+  getFieldDescribedBy(fieldName: string): string {
+    return this.hasFieldError(fieldName) ? `${fieldName}-error` : '';
   }
 }

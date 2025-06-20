@@ -1,4 +1,10 @@
-<mat-form-field [appearance]="appearance" class="full-width form-field">
+<mat-form-field
+  [appearance]="appearance"
+  [ngClass]="{
+    'full-width-form-field': fullWidth,
+    'inline-form-field': !fullWidth
+  }"
+>
   <mat-label>{{ label }}</mat-label>
 
   <mat-icon matPrefix *ngIf="icon" class="field-icon">{{ icon }}</mat-icon>

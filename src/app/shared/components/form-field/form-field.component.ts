@@ -22,6 +22,7 @@ export class FormFieldComponent implements ControlValueAccessor {
   @Input() icon = ""
   @Input() hint = ""
   @Input() appearance: "fill" | "outline" = "outline"
+  @Input() fullWidth = false;
 
   value = ""
   disabled = false
